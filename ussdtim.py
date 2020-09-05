@@ -1,3 +1,4 @@
+#from random import randint
 import time
 import sys
 
@@ -15,8 +16,16 @@ Select the Bank you wish to Transfer to:
 7. Unity Bank
 8. Wema Bank"""
 
-	
+gen_bvn = " "
+
+def BVN_checker( ):
+    global gen_bvn
+    bvn = [str(i) for i in range (5)]
+    gen_bvn= "".join(bvn)
+    print (gen_bvn)
+       				
 def open_acct( ):
+	global gen_bvn
 	print("Welcome to our online Account opening services.")
 	print("loading...")
 # creating an empty list to serve as a temporary place holder.
@@ -24,10 +33,13 @@ def open_acct( ):
 	f_name= input("Enter your first name:")
 	s_name= input ("Enter your second name:")
 	sex = input("Enter sex [M/F]:")
+	BVN_checker( )
 	temp_storage.append(f_name)
 	temp_storage.append(s_name)
 	temp_storage.append(sex)
-	print(temp_storage)
+	temp_storage.append(gen_bvn)
+	details= " ".join(temp_storage)
+	print(details)
 	exit( )
 	
 def upgrade_migrate( ):
@@ -50,18 +62,25 @@ def balance ( ):
 	print("ACCOUNT\tBALANCE\n CHECKER")
 	print("press 0 is go back to the Main Menu.")
 	pin=input("Enter your 4 digit pin:")
-# isdigit( ) is used to  check for digits within a str
-	if pin.isdigit( )==True:
-		time.sleep(5)
-		print("Loading...")
-		exit( )
-# Tried using zero ,but it didnt work because zero is a digit wirhin a string 
-	elif pin== "#":
-		options_menu( )
+# isdigit( ) is used to  check for digits within a str while the nested if is used to make sure the user inputs 4 digits.
+
+###```i am to put the pin trial in a while loop```###REMINDER!!!
+
+	if len(pin)!=4:
+	   	print("Make sure its a 4digit pin.")
+	   	time.sleep(5)
+	   	balance( )
 	else:
-		time.sleep(15)
-		print("wrong pin")
-		sys.exit( )
+	   		    if pin.isdigit( )==True:
+	   		        time.sleep(5)
+	   		        print("Loading...")
+	   		        exit( )
+	   		    elif pin== "#":
+	   		        options_menu( )
+	   		    else:
+	   		        time.sleep(15)
+	   		        print("wrong pin")
+	   		        sys.exit( )
 		
 def transf( ):
 	pass
