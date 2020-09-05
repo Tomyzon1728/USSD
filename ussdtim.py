@@ -1,10 +1,9 @@
-print('Welcome To Shugar e-Banking')
-options="""
-1. Open Account
-2. Upgrade/Migrate
-3. Balance
-4. Transfer
-5. Recharge"""
+import time
+import sys
+
+print('Welcome To fastrack USSD Banking Project...')
+time.sleep(8)
+
 BankList="""
 Select the Bank you wish to Transfer to:
 1. Access Bank
@@ -16,13 +15,79 @@ Select the Bank you wish to Transfer to:
 7. Unity Bank
 8. Wema Bank"""
 
+	
+def open_acct( ):
+	temp_storage= [ ]
+	f_name= input("Enter your first name:")
+	s_name= input ("Enter your second name:")
+	sex = input("Enter sex [M/F]:")
+	temp_storage.append(f_name)
+	temp_storage.append(s_name)
+	temp_storage.append(sex)
+	print(temp_storage)
+	
+def upgrade_migrate( ):
+		print("Welcome to our online Upgrade/Migration services.\n 1. Ugrade\n 2. Migrate")
+		prompt = input("Enter preferred Choice:")
+		if prompt==1:
+			time.sleep(5)
+			print("Choose Upgrade choice.")
+		else:
+			time.sleep(5)
+			print("Choose Migration Choice:")
 
-USSD=input("ENTER USSD:")
-if(USSD =="*919#"):
-    print(options)
-    #print('Enter preferred option')
+def balance ( ):
+	pass				
 
+def options ( ) :
+	print(" 1. Open Account\n2. Upgrade/Migrate\n3. Balance\n4. Transfer\n5. Recharge")
+	choice=int(input("Enter an option:"))
+	if choice == 1:
+		print("Welcome to our online Account opening services.")
+		print("loading...")
+		time.sleep(10)
+		open_acct( )
+	if choice == 2:
+		time.sleep(10)
+		upgrade_migrate( )
+	if choice ==3:
+		time.sleep(10)
+		balance( )
+		
+		
+		
+	
 
+def main( ):
+    try:
+        a=0
+        while a<3:
+            a+=1
+            USSD=input("ENTER USSD:")
+            if(USSD !="*919#"):
+            	 print("please re-enter USSD ...")
+            else:
+            	print("Welcome to our online services how may we help you")
+            	options( )
+            	sys.exit( )
+        else:
+        	sys.exit( )
+    
+    except:
+    	time.sleep(10)
+    	print("checking discrepancies...")
+    	time.sleep( 5)
+    	print("An error has occured.")	
+
+main( )
+
+	
+
+	
+		
+			
+					
+"""
 choice=input('Choose your preferred option:')
 if(choice=="1"):
     print('Welcome to Open Account option')
@@ -121,3 +186,4 @@ elif(choice=="5"):
 
 else:
     print("Unrecognised USSD; Kindly input a correct one. Thank you.")
+"""
