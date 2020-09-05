@@ -5,8 +5,7 @@ import sys
 print('Welcome To fastrack USSD Banking Project...')
 time.sleep(8)
 
-BankList="""
-Select the Bank you wish to Transfer to:
+bank_list="""
 1. Access Bank
 2. Fidelity Bank
 3. Guarantee Trust Bank
@@ -14,7 +13,8 @@ Select the Bank you wish to Transfer to:
 5. Polaris Bank
 6. Stanbic IBTC
 7. Unity Bank
-8. Wema Bank"""
+8. Wema Bank
+"""
 
 gen_bvn = " "
 
@@ -83,13 +83,41 @@ def balance ( ):
 	   		        sys.exit( )
 		
 def transf( ):
-	pass
-	
-def recharge( ):
-	pass													
+	print("1. Transfer self\n2. Transfer others")
+	trnsf=input(":")
+	if trnsf == "1":
+	    time.sleep(5)
+	    print("Sending...")
+	    exit( )
+	elif trnsf=="2":
+	    time.sleep(5)
+	    num=int(input("Enter receivers mobile number:"))
+	    print("Transferring to",num)
+	    exit( )
+	else:
+	    if trnsf.isdigit( )!= True:
+	        time.sleep(5)
+	        print("Not an option")
+	        sys.exit( )
+	    elif trnsf.isdigit( )==True and len(trnsf)>2:
+	        time.sleep( 5)
+	        print("wrong password.")
+	        sys.exit( )
+	    else:
+	        time.sleep(10)
+	        print("An error has occurred")
+	        sys.exit( )
+	        	
+def funds( ):
+	time.sleep(3)
+	print(bank_list)
+	bnk = input("Select receipients Bank:")
+	acc_num= input("Entet account number:")
+	print("Sending to",acc_num)
+	exit( )													
 
 def options_menu( ) :
-	print("1. Open Account\n2. Upgrade/Migrate\n3. Balance\n4. Transfer\n5. Recharge")
+	print("1. Open Account\n2. Upgrade/Migrate\n3. Balance\n4. Transfer\n5. Funds")
 	choice=int(input("Enter an option:"))
 	if choice == 1:
 		time.sleep(10)
@@ -104,8 +132,8 @@ def options_menu( ) :
 		time.sleep(10)
 		transf( )
 	elif choice ==5:
-		time.sleep( )
-		recharge( )
+		time.sleep(10)
+		funds( )
 	else:
 		time.sleep(5)
 		print("Not an option.")
@@ -140,110 +168,3 @@ def log_in( ):
     		sys.exit( )
     		
 log_in( )
-
-	
-
-	
-		
-			
-					
-"""
-choice=input('Choose your preferred option:')
-if(choice=="1"):
-    print('Welcome to Open Account option')
-    print("Press 0 if you don't have a BVN")
-    returncode=input("Please Enter Your BVN:")
-    if(returncode=="0"):
-        print("Kindly visit our nearest branch to register for your BVN")
-        print("For more info call: +2348132558019. Thank you.")
-    else:
-        print("The BVN you entered is incorrect, kindly visit the nearest branch to resolve this issue. Thank you.")
-elif(choice=="2"):
-    print("This feature will soon be available. Thank you.")
-elif(choice=="3"):
-    print("Your Balance is: N000,000.00")
-    #print('Go to our nearest Bank to deposite a preferred amount')
-    print("Thank you.")
-elif(choice=="4"):
-    print('Welcome to Transfer option')
-    print("Enter 's' for Self and 'o' for Others")
-    returncode=input()
-    if (returncode=="o"):
-        print(BankList)
-        returncode=input()
-        if (returncode=="1"):
-            print("Enter Third Party Account Number:")
-            print("Reply 0 to Start-Over")
-            returncode=input()
-            if (returncode=="0"):
-                print(options)
-            else:
-                print("Enter Amount to Transfer")
-                print("Reply 0 to Start-Over")
-                returncode=input()
-                if (returncode=="0"):
-                    print(options)
-                else:
-                    print("Transfer to Third-Party was Successful")
-
-        else:
-            print("Enter Third Party Account Number:")
-            print("Reply 0 to Start-Over")
-            returncode=input()
-            if (returncode=="0"):
-                print(options)
-            else:
-                print("Enter Amount to Transfer:")
-                print("Reply 0 to Start-Over")
-                returncode=input()
-                if (returncode=="0"):
-                    print(options)
-                else:
-                    print("Transfer to Third-Party was Successful")
-    else:
-        print("Enter your Account Number:")
-        print("Reply 0 to Start-Over")
-        returncode=input()
-        if (returncode=="0"):
-            print("select an option")
-            print(options)
-
-        else:
-            print("Enter Amount to Transfer:")
-            print("Reply 0 to Start-Over")
-            returncode=input()
-            if (returncode=="0"):
-                print("select an option")
-                print(options)
-
-            else:
-                print("Transfer Done Successfully. Thank you.")
-elif(choice=="5"):
-        print("Enter 1 for SELF and 2 for THIRD-PARTY")
-        returncode=input()
-        if (returncode=="1"):
-            print("Enter Preferred Amount")
-            print("Reply 0 to Start Over")
-            returncode=input()
-            if (returncode=="0"):
-                print(options)
-            else:
-                print("Your SELF Recharge was done Successfully. Thank You.")
-        else:
-            print("Enter THIRD-PARTY mobile number")
-            print("Reply 0 to Start Over")
-            returncode=input()
-            if (returncode=="0"):
-                print(options)
-            else:
-                print("Enter Preffered Amount")
-                print("Reply 0 to Start Over")
-                returncode=input()
-                if (returncode=="0"):
-                    print(options)
-                else:
-                    print("Rechard for THIRD-PARTY was successful. Thank You.")
-
-else:
-    print("Unrecognised USSD; Kindly input a correct one. Thank you.")
-"""
