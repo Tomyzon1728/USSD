@@ -1,4 +1,4 @@
-#from random import randint
+import random
 import time
 import sys
 
@@ -40,10 +40,18 @@ def open_acct( ):
 	temp_storage.append(gen_bvn)
 	details= " ".join(temp_storage)
 	print(details)
+	print("1. Press # to go back to options menu\n2. Press * to exit")
+	bck=input(":")
+	if bck=='#':
+	    options_menu( )
+	else:
+	    sys.exit( )
+	
 	exit( )
 	
 def upgrade_migrate( ):
 		print("Welcome to our online Upgrade/Migration services.\n 1. Ugrade\n 2. Migrate")
+		print("press # is go back to the Main Menu.")
 		prompt = int(input("Enter preferred Choice:"))
 		if prompt==1:
 			time.sleep(5)
@@ -60,7 +68,7 @@ def upgrade_migrate( ):
 
 def balance ( ):
 	print("ACCOUNT\tBALANCE\n CHECKER")
-	print("press 0 is go back to the Main Menu.")
+	print("press # is go back to the Main Menu.")
 	pin=input("Enter your 4 digit pin:")
 # isdigit( ) is used to  check for digits within a str while the nested if is used to make sure the user inputs 4 digits.
 
@@ -84,8 +92,11 @@ def balance ( ):
 		
 def transf( ):
 	print("1. Transfer self\n2. Transfer others")
+	print("press # is go back to the Main Menu.")
 	trnsf=input(":")
-	if trnsf == "1":
+	if trnsf == "#" :
+	    options_menu( )
+	elif trnsf == "1":
 	    time.sleep(5)
 	    print("Sending...")
 	    exit( )
@@ -114,38 +125,51 @@ def funds( ):
 	bnk = input("Select receipients Bank:")
 	acc_num= input("Entet account number:")
 	print("Sending to",acc_num)
-	exit( )													
+	hash= input("1.Press # to go back to options menu\n2. Press * to go exit.")
+	if hash == "#":
+	   options_menu( )
+	elif hash == "*":
+	    exit( )
+	else:
+														sys.exit( )											
 
+																#--------------------------------------------------												
+###i'm yet to catch an error for non -digit and more than one digit###REMINDER!!!						#-#------------------------------------------------------								
+# This is the function for options.
 def options_menu( ) :
 	print("1. Open Account\n2. Upgrade/Migrate\n3. Balance\n4. Transfer\n5. Funds")
-	choice=int(input("Enter an option:"))
-	if choice == 1:
+	choice=input("Enter an option:")
+	if choice == "1":
 		time.sleep(10)
 		open_acct( )
-	if choice == 2:
+	elif choice == "2":
 		time.sleep(10)
 		upgrade_migrate( )
-	elif choice ==3:
+	elif choice =="3":
 		time.sleep(10)
 		balance( )
-	elif choice ==4:
+	elif choice =="4":
 		time.sleep(10)
 		transf( )
-	elif choice ==5:
+	elif choice =="5":
 		time.sleep(10)
 		funds( )
 	else:
 		time.sleep(5)
 		print("Not an option.")
 		sys.exit( )
-
+		
+# This is the function which prompts the user as to whether the user wishes to continue or stop transaction.
 def exit( ):
 	exit= input("Do you wish to make another transaction [Y/N] :")
 	if exit== "N":
 		sys.exit( )
+	elif exit == "#":
+	    options_menu( )
 	else:
 		log_in( )
-				
+		
+# This is the function for logging using the fast code *919#			
 def log_in( ):
     try:
         a=0
