@@ -5,146 +5,66 @@ import sys
 print('Welcome To fastrack USSD Banking Project...')
 time.sleep(8)
 
-bank_list="""
-1. Access Bank
-2. Fidelity Bank
-3. Guarantee Trust Bank
-4. Heritage Bank
-5. Polaris Bank
-6. Stanbic IBTC
-7. Unity Bank
-8. Wema Bank
-"""
-
-gen_bvn = " "
-
-def BVN_checker( ):
-    global gen_bvn
-    bvn = [str(i) for i in range (5)]
-    gen_bvn= "".join(bvn)
-    print (gen_bvn)
-       				
-def open_acct( ):
-	global gen_bvn
-	print("Welcome to our online Account opening services.")
-	print("loading...")
-# creating an empty list to serve as a temporary place holder.
-	temp_storage= [ ]
-	f_name= input("Enter your first name:")
-	s_name= input ("Enter your second name:")
-	sex = input("Enter sex [M/F]:")
-	BVN_checker( )
-	temp_storage.append(f_name)
-	temp_storage.append(s_name)
-	temp_storage.append(sex)
-	temp_storage.append(gen_bvn)
-	details= " ".join(temp_storage)
-	print(details)
-	print("1. Press # to go back to options menu\n2. Press * to exit")
-	bck=input(":")
-	if bck=='#':
-	    options_menu( )
-	else:
-	    sys.exit( )
+def sub_airtime_others( ):
+    print("###################################################")
+    amt=input("Please enter destination phone line or last four digits if the number :")
+    print(" ")
+    print("00. Back\n0. Main")  
+    if amt.isdigit( ) and amt == 11 or amt == 4:
+        time.sleep(5)
+        print("Transaction is been processed")
+    elif amt== "00":
+        airtime_self( )
+    elif amt == "0":
+        main( )	
+    
+def  airtime_others( ) :
+	print("###################################################")
+	prompt = input("Please enter your PIN:")
 	
-	exit( )
+	print("0. Main")
+	if prompt.isdigit( ) and len(prompt)==4:
+	    sub_airtime_others( )
+	elif prompt == "0":
+	    main( )    
+	    
+def sub_airtime_self( ):
+    print("###################################################")
+    amt=input("Please enter amount (50 - 10000):")  
+    print("00. Back\n0. Main")  
+    if amt.isdigit( ) and amt == 50 or amt <= 10000:
+        time.sleep(5)
+        print("USSD loading...")
+        time.sleep(5)
+        print("Transaction is been processed")
+    elif amt== "00":
+        airtime_self( )
+    elif amt == "0":
+        main( )	
+        			
+def  airtime_self( ):
+	print("###################################################")
+	prompt = input("Please enter your PIN:")
 	
-def upgrade_migrate( ):
-		print("Welcome to our online Upgrade/Migration services.\n 1. Ugrade\n 2. Migrate")
-		print("press # is go back to the Main Menu.")
-		prompt = int(input("Enter preferred Choice:"))
-		if prompt==1:
-			time.sleep(5)
-			print("Upgrading...")
-			exit( )
-		elif prompt == 2:
-			time.sleep(5)
-			print("Migrating...")
-			exit( )
-		elif prompt == "#":
-			options_menu( )
-		else:
-			sys.exit( )
-
-def balance ( ):
-	print("ACCOUNT\tBALANCE\n CHECKER")
-	print("press # is go back to the Main Menu.")
-	pin=input("Enter your 4 digit pin:")
-# isdigit( ) is used to  check for digits within a str while the nested if is used to make sure the user inputs 4 digits.
-
-###```i am to put the pin trial in a while loop```###REMINDER!!!
-
-	if len(pin)!=4:
-	   	print("Make sure its a 4digit pin.")
-	   	time.sleep(5)
-	   	balance( )
-	else:
-	   		    if pin.isdigit( )==True:
-	   		        time.sleep(5)
-	   		        print("Loading...")
-	   		        exit( )
-	   		    elif pin== "#":
-	   		        options_menu( )
-	   		    else:
-	   		        time.sleep(15)
-	   		        print("wrong pin")
-	   		        sys.exit( )
-		
-def transf( ):
-	print("1. Transfer self\n2. Transfer others")
-	print("press # is go back to the Main Menu.")
-	trnsf=input(":")
-	if trnsf == "#" :
-	    options_menu( )
-	elif trnsf == "1":
-	    time.sleep(5)
-	    print("Sending...")
-	    exit( )
-	elif trnsf=="2":
-	    time.sleep(5)
-	    num=int(input("Enter receivers mobile number:"))
-	    print("Transferring to",num)
-	    exit( )
-	else:
-	    if trnsf.isdigit( )!= True:
-	        time.sleep(5)
-	        print("Not an option")
-	        sys.exit( )
-	    elif trnsf.isdigit( )==True and len(trnsf)>2:
-	        time.sleep( 5)
-	        print("wrong password.")
-	        sys.exit( )
-	    else:
-	        time.sleep(10)
-	        print("An error has occurred")
-	        sys.exit( )
-	        	
-def funds( ):
-	time.sleep(3)
-	print(bank_list)
-	bnk = input("Select receipients Bank:")
-	acc_num= input("Entet account number:")
-	print("Sending to",acc_num)
-	hash= input("1.Press # to go back to options menu\n2. Press * to go exit.")
-	if hash == "#":
-	   options_menu( )
-	elif hash == "*":
-	    exit( )
-	else:
-														sys.exit( )											
-
+	print("0. Main")
+	if prompt.isdigit( ) and len(prompt)==4:
+	    sub_airtime_self( )
+	elif prompt == "0":
+	    main( )										
 																#--------------------------------------------------												
 ###i'm yet to catch an error for non -digit and more than one digit###REMINDER!!!						#-#------------------------------------------------------								
 # This is the function for options.
-def options_menu( ) :
-	print("1. Open Account\n2. Upgrade/Migrate\n3. Balance\n4. Transfer\n5. Funds")
-	choice=input("Enter an option:")
+def main( ) :
+	print("1. Airtime-Self\n2. Airtime-Others\n3. Transfer-UBA\n4. Transfer-Other Banks\n5. Transfer-UBA Prepaid\n6. Check Bakance\n7. Pay Bills\n8. Next")
+	choice=input("\n ")
+	print("__________________________")
+	print("###################################################")
 	if choice == "1":
 		time.sleep(10)
-		open_acct( )
+		airtime_self( )
 	elif choice == "2":
 		time.sleep(10)
-		upgrade_migrate( )
+		airtime_others( )
 	elif choice =="3":
 		time.sleep(10)
 		balance( )
@@ -165,7 +85,7 @@ def exit( ):
 	if exit== "N":
 		sys.exit( )
 	elif exit == "#":
-	    options_menu( )
+	    main( )
 	else:
 		log_in( )
 		
@@ -175,12 +95,14 @@ def log_in( ):
         a=0
         while a<3:
             a+=1
+            print("###################################################")
             USSD=input("ENTER USSD:")
             if(USSD !="*919#"):
             	 print("please re-enter USSD ...")
             else:
+            	print("###################################################")
             	print("Welcome to our online services how may we help you")
-            	options_menu( ) 
+            	main( ) 
             	exit( )
         else:
         	time.sleep(10)
