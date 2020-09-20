@@ -4,6 +4,15 @@ import sys
 
 print('Welcome To fastrack USSD Banking Project...')
 time.sleep(8)
+def trnsf_uba( ):
+	bank = input("Please enter your PIN:")
+	
+	print("0. Main")
+	if bank.isdigit( ) and len(prompt)==4:
+	    sub_airtime_others( )
+	elif bank == "0":
+	    main( )    
+	
 
 def sub_airtime_others( ):
     print("###################################################")
